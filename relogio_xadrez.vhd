@@ -23,15 +23,32 @@ end relogio_xadrez;
 
 architecture relogio_xadrez of relogio_xadrez is
     -- DECLARACAO DOS ESTADOS
-    type states is ( ...
+    type states is ( reset, load, start, j1, j2, win_j1, win_j2);
     signal EA, PE : states;
     -- ADICIONE AQUI OS SINAIS INTERNOS NECESSARIOS
-    
+    -- sinais internos
+    signal en_1, en_2
 begin
 
     -- INSTANCIACAO DOS CONTADORES
-    contador1 : entity work.temporizador port map ( ...
-    contador2 : entity work.temporizador port map ( ...
+    contador1 : entity work.temporizador port map (         
+            clock => clock_int,
+            reset => reset_int,
+            load => load_int,
+            en => en_1,
+            init_time => init_time_int,
+            cont => contj1_int
+        );
+
+    contador2 : entity work.temporizador port map (
+        clock => clock_int,
+        reset => reset_int,
+        load => load_int,
+        en => en_2,
+        init_time => init_time_int,
+        cont => contj2_int
+    );
+
 
     -- PROCESSO DE TROCA DE ESTADOS
     process (clock, reset)
@@ -53,6 +70,13 @@ begin
 
     
     -- ATRIBUICAO COMBINACIONAL DOS SINAIS INTERNOS E SAIDAS - Dica: faca uma maquina de Moore, desta forma os sinais dependem apenas do estado atual!!
+    en_1 <= '1' when EA = j1 else '0';
     
 
 end relogio_xadrez;
+
+
+
+
+
+--
