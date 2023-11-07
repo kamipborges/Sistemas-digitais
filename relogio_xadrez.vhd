@@ -82,7 +82,7 @@ begin
                     PE <= j2;
                     end if;
                
-                    when j1 =>
+                    when jog1 =>
                     if j1 ='1' then 
                     PE <= j2;
                     end if;
@@ -90,7 +90,7 @@ begin
                     PE <= win_j2;
                     end if;
                
-                    when j2 =>
+                    when jog2 =>
                     if j2 ='1' then 
                     PE <= j1;
                     end if;
@@ -106,7 +106,7 @@ begin
     en_1 <= '1' when EA = j1 else '0'; --decrementar 
     en_2 <= '1' when EA = j2 else '0';
     load_int <= '1' when EA = load else '0'; --
-    j1 <= '1' then 
+    
     
 
 
